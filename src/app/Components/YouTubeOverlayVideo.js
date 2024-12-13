@@ -49,7 +49,7 @@ const YouTubeOverlayVideo = ({ videoId, logoUrl }) => {
 
       {/* Fecha y hora */}
       <div style={styles.datetime}>
-        {currentTime.toLocaleDateString()} <p>{currentTime.toLocaleTimeString()}</p>
+        {currentTime.toLocaleDateString()} <p>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
       </div>
     </div>
   );
@@ -66,7 +66,7 @@ const styles = {
   video: {
     position: 'absolute',
     top: -120,
-    left: -260,
+    left: -220,
     width: '140%',
     height: '140%',
     objectFit: 'cover',
