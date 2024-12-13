@@ -6,19 +6,16 @@ const YouTubeOverlayVideo = ({ videoId, logoUrl }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
-    // Actualiza la fecha y hora cada segundo
     const interval = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    // Carga la API de YouTube
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // Cuando la API esté lista, inicializa el reproductor
     window.onYouTubeIframeAPIReady = () => {
       const player = new window.YT.Player('youtube-player', {
         videoId: videoId,
@@ -30,7 +27,6 @@ const YouTubeOverlayVideo = ({ videoId, logoUrl }) => {
         },
         events: {
           onReady: (event) => {
-            // Establece la máxima calidad disponible
             event.target.setPlaybackQuality('hd1080');
             event.target.playVideo();
           },
@@ -41,13 +37,11 @@ const YouTubeOverlayVideo = ({ videoId, logoUrl }) => {
 
   return (
     <div style={styles.container}>
-      {/* Video de YouTube */}
+
       <div id="youtube-player" style={styles.video}></div>
 
-      {/* Logotipo */}
       <img src={logoUrl} alt="Logo" style={styles.logo} />
 
-      {/* Fecha y hora */}
       <div style={styles.datetime}>
         {currentTime.toLocaleDateString()} <p>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
       </div>
@@ -55,7 +49,6 @@ const YouTubeOverlayVideo = ({ videoId, logoUrl }) => {
   );
 };
 
-// Estilos
 const styles = {
   container: {
     position: 'relative',
