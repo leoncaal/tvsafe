@@ -66,8 +66,8 @@ const styles = {
   video: {
     position: 'absolute',
     top: -100,
-    left: -0,
-    width: '100%',
+    left: -140,
+    width: '120%',
     height: '120%',
     objectFit: 'cover',
     zIndex: -1,
